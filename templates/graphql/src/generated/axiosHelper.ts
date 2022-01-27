@@ -17,6 +17,9 @@ export const useAxios = <TData, TVariables>(
       body = formData;
     }
 
-    return axios.post<{ data: TData }>(url, body).then((res) => res.data.data);
+    return axios.post<{ data: TData; errors: unknown }>(url, body).then((res) => {
+      if (res.data.errors) throw new Error(JSON.stringify(res.data.errors));
+      return res.data.data;
+    });
   };
 };

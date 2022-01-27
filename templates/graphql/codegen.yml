@@ -13,12 +13,11 @@ generates:
       - 'typescript-operations'
       - 'typescript-react-query'
     config:
+      skipTypename: true
+      inlineFragmentTypes: combine
       fetcher:
         func: './axiosHelper#useAxios'
         isReactHook: true
-      scalars:
-        Upload: File
-
   ./graphql.schema.json:
     plugins:
       - 'introspection'
