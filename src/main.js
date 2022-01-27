@@ -6,13 +6,16 @@ import { projectInstall } from "pkg-install";
 import { initGit } from "./initGit";
 import { copyTemplateFiles } from "./copyTemplateFiles";
 import Listr from "listr";
+import { pkgFromUserAgent } from "./functions/index";
 
 const access = promisify(fs.access);
 
 export async function createProject(options) {
+  const cwd = process.cwd();
+
   options = {
     ...options,
-    targetDir: options.targetDir || process.cwd(),
+    targetDir: options.targetDir || cwd,
   };
 
   const curFileUrl = import.meta.url;
@@ -52,5 +55,24 @@ export async function createProject(options) {
     },
   ]);
 
-  await task.run();
+  await task.run().then((res) => {
+    const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent);
+    const pkgManager = pkgInfo ? pkgInfo.name : "npm";
+
+    const root = options.folderName;
+    console.log(`\nDone. Now run:\n`);
+    if (root !== cwd) {
+      console.log(`  cd ${path.relative(cwd, root)}`);
+    }
+    switch (pkgManager) {
+      case "yarn":
+        console.log("  yarn");
+        console.log("  yarn dev");
+        break;
+      default:
+        console.log(`  ${pkgManager} install`);
+        console.log(`  ${pkgManager} run dev`);
+        break;
+    }
+  });
 }

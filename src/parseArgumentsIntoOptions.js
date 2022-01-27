@@ -9,13 +9,15 @@ export default function parseArgumentsIntoOptions(rawArgs) {
       "-g": "--git",
       "-y": "--yes",
       "-i": "--install",
+      "-t": String,
     },
     { argv: rawArgs.slice(2) }
   );
   return {
     skipPrompts: args["--yes"] || false,
     git: args["--git"] || false,
-    template: args._[0],
+    template: args["-t"],
+    folderName: args._[0],
     runInstall: args["--install"] || false,
   };
 }

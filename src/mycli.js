@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import { createProject } from "./main";
 import parseArgumentsIntoOptions from "./parseArgumentsIntoOptions";
 
-const DEFAULT_THEME = "Javascript";
+const DEFAULT_THEME = "GraphQL";
 async function promptForMissingOptions(options) {
   if (options.skipPrompts) {
     return {
@@ -18,7 +18,7 @@ async function promptForMissingOptions(options) {
       type: "list",
       name: "template",
       message: "Please choose from the project template",
-      choices: ["Javascript", "Typescript", "React", "Angular"],
+      choices: ["GraphQL", "REST"],
       default: DEFAULT_THEME,
     });
   }
@@ -45,5 +45,5 @@ export async function myCLI(args) {
   const options = parseArgumentsIntoOptions(args);
   const prompt = await promptForMissingOptions(options);
 
-  await createProject(prompt);
+  await createProject(prompt).then((res) => {});
 }
