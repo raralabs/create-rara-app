@@ -6,7 +6,7 @@ import { projectInstall } from "pkg-install";
 import { initGit } from "./initGit";
 import { copyTemplateFiles } from "./copyTemplateFiles";
 import Listr from "listr";
-import { pkgFromUserAgent } from "./functions/index";
+import { pkgFromUserAgent, updateEnvFile } from "./functions/index";
 
 const access = promisify(fs.access);
 
@@ -56,6 +56,9 @@ export async function createProject(options) {
   ]);
 
   await task.run().then((res) => {
+    updateEnvFile(options).catch(() => {
+      throw new Error("Errror while creating env file");
+    });
     const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent);
     const pkgManager = pkgInfo ? pkgInfo.name : "npm";
 

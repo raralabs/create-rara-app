@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://159.89.231.86:9000/query'
+schema: ${VITE_SCHEMA_PATH}
 documents: 'src/**/*.graphql'
 watch: true
 generates:

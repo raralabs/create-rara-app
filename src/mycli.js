@@ -23,21 +23,40 @@ async function promptForMissingOptions(options) {
     });
   }
 
-  if (!options.git) {
-    questions.push({
-      type: "confirm",
-      name: "git",
-      message: "Do you want to init git?",
-      default: false,
-    });
+  const { template } = await inquirer.prompt(questions);
+
+  if (template === "GraphQL") {
+    const schemaPathPrompt = [
+      {
+        type: "input",
+        name: "schemaPath",
+        message: "Enter the path of your schema",
+        default: "(http://localhost:9000/query)",
+      },
+    ];
+    const { schemaPath } = await inquirer.prompt(schemaPathPrompt);
+
+    const serverApiPrompt = [
+      {
+        type: "input",
+        name: "graphqlApi",
+        message: "Enter the url of Api",
+        default: schemaPath,
+      },
+    ];
+
+    const { graphqlApi } = await inquirer.prompt(serverApiPrompt);
+
+    return {
+      ...options,
+      template: options.template || template,
+      schemaPath,
+      graphqlApi,
+    };
   }
-
-  const answer = await inquirer.prompt(questions);
-
   return {
     ...options,
-    git: options.git || answer.git,
-    template: options.template || answer.template,
+    template: options.template || template,
   };
 }
 

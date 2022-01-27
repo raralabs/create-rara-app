@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { SERVER_API_URL } from 'constant';
 import { getNewBodyForUpload, hasFiles } from './fileUploadHelper';
 
 export const useAxios = <TData, TVariables>(
@@ -7,7 +6,7 @@ export const useAxios = <TData, TVariables>(
 ): ((variables?: TVariables) => Promise<TData>) => {
   // it is safe to call React Hooks here.
   // const { url, headers } = React.useContext(FetchParamsContext)
-  const url = SERVER_API_URL;
+  const url = import.meta.env.VITE_API_URL;
   return async (variables?: TVariables) => {
 
     const hasFilesForUpload = hasFiles(variables);
