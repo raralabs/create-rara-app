@@ -3,9 +3,8 @@ const IndexPage = lazy(() => import('pages/Index'));
 
 export const routes = [
   {
-    path: '/index',
-    name: 'Index',
-    element: IndexPage,
+    path: '/',
+    element: <IndexPage />,
   },
 ];
 
