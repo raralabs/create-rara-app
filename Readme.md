@@ -2,6 +2,12 @@
 
 A collections of react app templates to be used within the organization. The templates are created with discussed sets of packages. The templates are initially created by scaffolding with vite and later extended with chosen packages.
 
+### Scaffolding Your Rara App
+
+```javascript
+npx create-rara-app folderName
+```
+
 ## Available Templates:
 
 1. GraphQL
