@@ -1,7 +1,7 @@
 {
-  "name": "cli",
-  "version": "1.0.0",
-  "description": "",
+  "name": "create-rara-app",
+  "version": "0.0.1",
+  "description": "Scaffold a react-app with some pre discussed sets of packages",
   "main": "index.js",
   "bin": {
     "create-rara-app": "./bin/create-rara-app.js"
