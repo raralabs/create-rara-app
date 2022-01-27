@@ -1,6 +1,6 @@
 {
   "name": "create-rara-app",
-  "version": "0.0.1-beta",
+  "version": "0.0.2-beta",
   "description": "Scaffold a react-app with some pre discussed sets of packages",
   "main": "index.js",
   "bin": {
@@ -12,8 +12,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "create-react-app",
+    "vite",
+    "typescript",
+    "template",
+    "react-boilerplate",
+    "chakra-ui",
+    "graphql",
+    "react-query"
+  ],
+  "author": "ctrlx-altf4",
   "license": "ISC",
   "dependencies": {
     "arg": "^5.0.1",
