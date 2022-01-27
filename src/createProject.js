@@ -40,7 +40,7 @@ export async function createProject(options) {
     {
       title: "Init git",
       task: () => initGit(options),
-      enable: () => options.git,
+      //   enable: () => options.git,
     },
     {
       title: "Install node_modules ",
