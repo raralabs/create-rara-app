@@ -31,7 +31,7 @@ async function promptForMissingOptions(options) {
         type: "input",
         name: "schemaPath",
         message: "Enter the path of your schema",
-        default: "(http://localhost:9000/query)",
+        default: "http://localhost:9000/query",
       },
     ];
     const { schemaPath } = await inquirer.prompt(schemaPathPrompt);
@@ -60,7 +60,7 @@ async function promptForMissingOptions(options) {
   };
 }
 
-export async function main(args) {
+export async function run(args) {
   const options = parseArgumentsIntoOptions(args);
   const prompt = await promptForMissingOptions(options);
 
