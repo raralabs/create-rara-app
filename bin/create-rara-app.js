@@ -2,4 +2,4 @@
 
 //Set options as parameter, environemnt variable, or rc file
 require = require("esm")(module /*,options*/);
-require("../src/mycli").myCLI(process.argv);
+require("../src/main").myCLI(process.argv);

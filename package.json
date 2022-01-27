@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "create-app": "./bin/create-app.js"
+    "create-rara-app": "./bin/create-rara-app.js"
   },
   "publishConfig": {
     "access": "public"

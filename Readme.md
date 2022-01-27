@@ -5,11 +5,14 @@ A collections of react app templates to be used within the organization. The tem
 ## Available Templates:
 
 1. GraphQL
+
    > with react-query, typescript,vite, husky, eslint, graphql-code-generator,chakra-ui, react-location
 
-## Common Packages Used across the templates:
+2. REST
 
-For react app: I choose these: (after dabbling around with other alternatives...) at least for now..
+   > !! Not Supported
+
+## Common Packages Used across the templates:
 
 - [Vite](https://vitejs.dev/) for scafollding with proper husky, eslint and prettier setup
 - [react-query](https://react-query.tanstack.com/) with axios for server data management

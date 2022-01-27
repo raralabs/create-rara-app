@@ -1,81 +1,68 @@
-import fs from "fs";
-import path from "path";
-import { promisify } from "util";
-import { URL } from "url";
-import { projectInstall } from "pkg-install";
-import { initGit } from "./initGit";
-import { copyTemplateFiles } from "./copyTemplateFiles";
-import Listr from "listr";
-import { pkgFromUserAgent, updateEnvFile } from "./functions/index";
+import inquirer from "inquirer";
+import { createProject } from "./createProject";
+import parseArgumentsIntoOptions from "./parseArgumentsIntoOptions";
 
-const access = promisify(fs.access);
-
-export async function createProject(options) {
-  const cwd = process.cwd();
-
-  options = {
-    ...options,
-    targetDir: options.targetDir || cwd,
-  };
-
-  const curFileUrl = import.meta.url;
-
-  const templateDir = path.resolve(
-    new URL(curFileUrl).pathname,
-    "../../templates",
-    options.template.toLowerCase()
-  );
-
-  options.templateDir = templateDir;
-
-  try {
-    await access(templateDir, fs.constants.R_OK);
-  } catch (err) {
-    console.error("Invalid Template");
-    process.exit(1);
+const DEFAULT_THEME = "GraphQL";
+async function promptForMissingOptions(options) {
+  if (options.skipPrompts) {
+    return {
+      ...options,
+      template: options.template || DEFAULT_THEME,
+    };
   }
 
-  const task = new Listr([
-    { title: "Copy project files", task: () => copyTemplateFiles(options) },
-    {
-      title: "Init git",
-      task: () => initGit(options),
-      enable: () => options.git,
-    },
-    {
-      title: "Install node_modules ",
-      task: () =>
-        projectInstall({
-          cwd: options.targetDir,
-        }),
-      skip: () =>
-        !options.runInstall
-          ? "Pass  --install to automatically install  packages"
-          : undefined,
-    },
-  ]);
+  const questions = [];
 
-  await task.run().then((res) => {
-    updateEnvFile(options).catch(() => {
-      throw new Error("Errror while creating env file");
+  if (!options.template) {
+    questions.push({
+      type: "list",
+      name: "template",
+      message: "Please choose from the project template",
+      choices: ["GraphQL", "REST"],
+      default: DEFAULT_THEME,
     });
-    const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent);
-    const pkgManager = pkgInfo ? pkgInfo.name : "npm";
+  }
 
-    const root = options.folderName;
-    console.log(`\nDone. Now run:\n`);
-    if (root !== cwd) {
-      console.log(`  cd ${path.relative(cwd, root)}`);
-    }
-    switch (pkgManager) {
-      case "yarn":
-        console.log("  yarn");
-        console.log("  yarn dev");
-        break;
-      default:
-        console.log(`  ${pkgManager} install`);
-        console.log(`  ${pkgManager} run dev`);
-        break;
-    }
-  });
+  const { template } = await inquirer.prompt(questions);
+
+  if (template === "GraphQL") {
+    const schemaPathPrompt = [
+      {
+        type: "input",
+        name: "schemaPath",
+        message: "Enter the path of your schema",
+        default: "(http://localhost:9000/query)",
+      },
+    ];
+    const { schemaPath } = await inquirer.prompt(schemaPathPrompt);
+
+    const serverApiPrompt = [
+      {
+        type: "input",
+        name: "graphqlApi",
+        message: "Enter the url of Api",
+        default: schemaPath,
+      },
+    ];
+
+    const { graphqlApi } = await inquirer.prompt(serverApiPrompt);
+
+    return {
+      ...options,
+      template: options.template || template,
+      schemaPath,
+      graphqlApi,
+    };
+  }
+  return {
+    ...options,
+    template: options.template || template,
+  };
+}
+
+export async function main(args) {
+  const options = parseArgumentsIntoOptions(args);
+  const prompt = await promptForMissingOptions(options);
+
+  await createProject(prompt).then((res) => {});
 }
