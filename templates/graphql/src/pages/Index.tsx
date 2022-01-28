@@ -3,7 +3,6 @@ import {
     Box,
     Center,
     Text,
-    Button,
     Code,
     Alert,
     AlertIcon,
