@@ -15,7 +15,7 @@
     "analyze": "source-map-explorer 'dist/assets/*.js'",
     "gen:theme-typings": "chakra-cli tokens ./src/theme/index.ts",
     "postinstall": "yarn gen:theme-typings",
-    "graphql:codegen": "graphql-codegen --config codegen.yml"
+    "graphql:codegen": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.3",
