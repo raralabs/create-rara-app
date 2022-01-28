@@ -67,6 +67,8 @@ VITE_API_URL = http://localhost:9000/query
 
 **public/\_\_redirects** is used to prevent _page not found_ issue on reload after deploying on netlify
 
+**nginx.conf**: This file is used to prevent _page not found_ issues on reload after deploying on nginx server. The nginx server is used if you deploy with the given dockerFile
+
 ### For Development
 
 - npm link (creates a symlink);
