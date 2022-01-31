@@ -17,12 +17,11 @@ export async function createProject(options) {
     ...options,
     targetDir: options.targetDir || cwd,
   };
+  const curFileUrl = process.cwd();
 
-  const curFileUrl = import.meta.url;
-
-  const templateDir = path.resolve(
-    new URL(curFileUrl).pathname,
-    "../../templates",
+  const templateDir = path.join(
+    __dirname,
+    "templates/",
     options.template.toLowerCase()
   );
 
@@ -32,6 +31,7 @@ export async function createProject(options) {
     await access(templateDir, fs.constants.R_OK);
   } catch (err) {
     console.error("Invalid Template");
+    console.log(err);
     process.exit(1);
   }
 
@@ -59,14 +59,16 @@ export async function createProject(options) {
     updateEnvFile(options).catch(() => {
       throw new Error("Errror while creating env file");
     });
+
     const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent);
     const pkgManager = pkgInfo ? pkgInfo.name : "npm";
-
     const root = options.folderName;
     console.log(`\nDone. Now run:\n`);
+
     if (root !== cwd) {
       console.log(`  cd ${path.relative(cwd, root)}`);
     }
+
     switch (pkgManager) {
       case "yarn":
         console.log("  yarn");
