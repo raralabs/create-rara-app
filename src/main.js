@@ -3,6 +3,9 @@ import { createProject } from "./createProject";
 import parseArgumentsIntoOptions from "./parseArgumentsIntoOptions";
 
 const DEFAULT_THEME = "GraphQL";
+
+// TODO redo all this..
+// this is just a quick setup for now
 async function promptForMissingOptions(options) {
   if (options.skipPrompts) {
     return {
@@ -12,6 +15,19 @@ async function promptForMissingOptions(options) {
   }
 
   const questions = [];
+
+  if (!options.folderName) {
+    const folderNameQuestion = [
+      {
+        type: "input",
+        name: "folderName",
+        message: "Enter the name of your folder",
+        default: "rara-app",
+      },
+    ];
+    const { folderName } = await inquirer.prompt(folderNameQuestion);
+    options.folderName = folderName;
+  }
 
   if (!options.template) {
     questions.push({
