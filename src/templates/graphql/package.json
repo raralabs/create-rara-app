@@ -1,7 +1,7 @@
 {
-  "name": "screen-projection",
+  "name": "create-rara-app",
   "version": "0.0.0",
-  "description": "Screen Projection:Web builder with drag and drop",
+  "description": "Scaffolded using create-rara-app",
   "scripts": {
     "start": "vite",
     "dev": "concurrently \"yarn start\" \"yarn graphql:codegen\"",
@@ -18,8 +18,7 @@
     "graphql:codegen": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.7.3",
-    "@craftjs/core": "^0.2.0-beta.0",
+    "@chakra-ui/react": "^1.8.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "axios": "^0.24.0",
@@ -28,12 +27,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-error-boundary": "^3.1.4",
-    "react-icons": "^4.3.1",
     "react-location": "^3.3.0",
     "react-query": "^3.34.7"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "^1.6.0",
+    "@chakra-ui/cli": "^1.8.1",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@commitlint/prompt-cli": "^15.0.0",
