@@ -48,3 +48,13 @@ VITE_API_URL = http://localhost:9000/query
 **public/__redirects** is used to prevent *page not found* issue on reload after deploying on netlify
 
 **nginx.conf**: This file is used to prevent *page not found* issues on reload after deploying on nginx server. The nginx server is used if you deploy with the given dockerFile
+
+
+### tsconfig.json
+
+This configuration has been removed so as to disable the support for default import of react.
+```
+ "allowSyntheticDefaultImports": true,
+ ```
+
+[Further information](https://www.reddit.com/r/reactjs/comments/iyehol/import_react_from_react_will_go_away_in_distant/)
