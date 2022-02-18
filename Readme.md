@@ -71,5 +71,6 @@ VITE_API_URL = http://localhost:9000/query
 
 ### For Development
 
-- npm link (creates a symlink);
+- npm link // creates a symlink
+
 - create-rara-app folderName

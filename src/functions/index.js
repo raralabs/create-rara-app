@@ -1,3 +1,5 @@
+"use strict";
+
 import fs from "fs";
 
 /**
@@ -19,4 +21,19 @@ export async function updateEnvFile(options) {
   const env = `VITE_SCHEMA_PATH = ${options.schemaPath}\nVITE_API_URL = ${options.graphqlApi}
   `;
   return await fs.writeFileSync(envPath, env);
+}
+
+export function checkNodeVersion() {
+  const currentNodeVersion = process.versions.node;
+  const semver = currentNodeVersion.split(".");
+  const major = semver[0];
+
+  // Not exactly sure about this..
+  // but just to remain on the safe side
+  if (major < 14) {
+    console.error(
+      `You are running Node ${currentNodeVersion} \n. create-rara-app requires Node 14 or higher Please update your version of Node.`
+    );
+    process.exit(1);
+  }
 }

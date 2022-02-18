@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import { createProject } from "./createProject";
+import { checkNodeVersion } from "./functions";
 import parseArgumentsIntoOptions from "./parseArgumentsIntoOptions";
 
 const DEFAULT_THEME = "GraphQL";
@@ -77,6 +78,7 @@ async function promptForMissingOptions(options) {
 }
 
 export async function run(args) {
+  checkNodeVersion();
   const options = parseArgumentsIntoOptions(args);
   const prompt = await promptForMissingOptions(options);
 
