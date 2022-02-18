@@ -13,9 +13,6 @@ export default defineConfig({
     }
   },
   */
-  build: {
-    sourcemap: true,
-  },
   resolve: {
     alias: {
       tslib: 'tslib/tslib.es6.js',

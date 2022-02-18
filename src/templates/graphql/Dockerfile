@@ -2,7 +2,7 @@
 FROM node:12 AS build
 WORKDIR /app
 COPY package* yarn.lock ./
-RUN yarn
+RUN yarn install --production
 COPY . .
 RUN yarn build
 
