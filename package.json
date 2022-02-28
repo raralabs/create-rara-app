@@ -1,6 +1,6 @@
 {
   "name": "create-rara-app",
-  "version": "0.0.6-beta",
+  "version": "0.0.7-beta",
   "description": "Scaffold a react-app with some pre discussed sets of packages",
   "main": "index.js",
   "bin": {
