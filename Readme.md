@@ -74,3 +74,7 @@ VITE_API_URL = http://localhost:9000/query
 - npm link // creates a symlink
 
 - create-rara-app folderName
+
+### REQUEST
+
+Please create a PR or an issue [here](https://github.com/raralabs/create-rara-app/) if any versions need to be changed.
