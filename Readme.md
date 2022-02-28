@@ -16,7 +16,7 @@ npx create-rara-app folderName
 
 2. REST
 
-   > !! Not Supported
+   > !! Not Supported YET
 
 ## Common Packages Used across the templates:
 
@@ -74,6 +74,19 @@ VITE_API_URL = http://localhost:9000/query
 - npm link // creates a symlink
 
 - create-rara-app folderName
+
+### Other Packages (Experiments & Recommendations)
+
+- [Vitest](https://vitest.dev/) :A blazing fast unit-test framework powered by Vite.
+
+  > We are current experimenting on setting up Vitest and once this is finalized. It will be added to create-rara-app
+
+- [react-hook-form](https://react-hook-form.com/): For forms
+
+  > This probably will _never_ be added as a default dependancy on _create-rara-app_. But it is recommended to use this package when you need any form related libraries.
+
+- [zustand](https://github.com/pmndrs/zustand): For state management
+  > No state management packages will be added as a default dependancy on _create-rara-app_ for now. Though, we will be experimenting with redux, [redux toolkit](https://redux-toolkit.js.org/), zustand, [Xstate](https://xstate.js.org/). And if we ever come to agree on any state management, then we might be considering adding a state management library on _create-rara-app_. For now, we are recommending _zustand_.
 
 ### REQUEST
 
