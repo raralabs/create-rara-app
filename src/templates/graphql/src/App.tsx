@@ -1,14 +1,19 @@
 import { Suspense } from 'react';
 import { Spinner } from '@chakra-ui/react';
 
-import { ReactLocation, Router } from 'react-location';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import routes from 'routes';
 
-const location = new ReactLocation();
 function App() {
   return (
     <Suspense fallback={<Spinner />}>
-      <Router location={location} routes={routes}></Router>
+      <Router>
+        <Routes>
+          {routes.map((path) => (
+            <Route path={path.path} element={path.element} />
+          ))}
+        </Routes>
+      </Router>
     </Suspense>
   );
 }
