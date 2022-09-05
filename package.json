@@ -31,7 +31,8 @@
     "inquirer": "^8.2.0",
     "listr": "^0.14.3",
     "ncp": "^2.0.0",
-    "pkg-install": "^1.0.0"
+    "pkg-install": "^1.0.0",
+    "react": "^18.2.0"
   },
   "files": [
     "bin/",

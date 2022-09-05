@@ -24,7 +24,7 @@ npx create-rara-app folderName
 - [react-query](https://react-query.tanstack.com/) with axios for server data management
 - [Chakra ui](https://chakra-ui.com/) for style
 - [Typescript](https://www.typescriptlang.org/)
-- [React-location](https://react-location.tanstack.com/) for routing
+- [react-router-dom](https://reactrouter.com/en/v6.3.0/getting-started/overview) for routing
 
 ### Has Commit Lint enabled
 
