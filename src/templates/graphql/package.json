@@ -5,9 +5,9 @@
   "scripts": {
     "start": "vite",
     "dev": "concurrently \"yarn start\" \"yarn graphql:codegen\"",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "serve": "vite preview",
-    "prepare": "husky install chmod +x .husky/*",
+    "prepare": "husky install ",
     "commit": "commit",
     "format": "prettier --write --ignore-unknown .",
     "lint": "eslint --cache ./src",
@@ -30,7 +30,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "^2.1.7",
+    "@chakra-ui/cli": "1.7.0",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@commitlint/prompt-cli": "^15.0.0",

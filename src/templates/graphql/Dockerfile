@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:12 AS build
+FROM node:16 AS build
 WORKDIR /app
 COPY package* yarn.lock ./
 RUN yarn
